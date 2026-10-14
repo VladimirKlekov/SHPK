@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">SHPK</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="authentication">Authentication</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="enter">Enter</string>
+    <string name="exit">Exit</string>
+    <string name="error_internet">The internet is unavailable. Check your connection.</string>
+    <string name="connection_error_server">Connection error to the server.</string>
 </resources>
