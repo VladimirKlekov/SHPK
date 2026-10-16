@@ -61,17 +61,14 @@ class MainFragment : Fragment(), CheckConnection {
     }
 
     override fun checkConnectionInternet() {
-//        val connectionLiveData = NetworkConnectionLiveData(requireContext())
-//        connectionLiveData.observe(requireContext() as LifecycleOwner, Observer { isConnected ->
-//            if (isConnected == true) {
-//                binding.containerErrorInternet.errorInternetLayout.visibility = View.GONE
-//            } else {
-//                binding.containerErrorInternet.errorInternetLayout.visibility = View.VISIBLE
-//            }
-//        })
+        val connectionLiveData = NetworkConnectionLiveData(requireContext())
+        connectionLiveData.observe(requireContext() as LifecycleOwner, Observer { isConnected ->
+            if (isConnected == true) {
+                binding.containerErrorInternet.errorInternetLayout.visibility = View.GONE
+            } else {
+                binding.containerErrorInternet.errorInternetLayout.visibility = View.VISIBLE
+            }
+        })
     }
 
-    override fun checkConnectionServer() {
-        TODO("Not yet implemented")
-    }
 }

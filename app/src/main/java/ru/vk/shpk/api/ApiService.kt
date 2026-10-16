@@ -1,7 +1,5 @@
 package ru.vk.shpk.api
 
-import okhttp3.OkHttpClient
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,6 +22,9 @@ interface ServerApiService {
 
     @POST("/login")
     suspend fun singIn(@Body user:User): Response<Token>
+
+    @GET("/test")
+    suspend fun testServer(): Response<Boolean>
 
     @GET("/")
     suspend fun getHello(): Response<Api>

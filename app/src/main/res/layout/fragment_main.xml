@@ -14,22 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-<!--    <include-->
-<!--        android:id="@+id/containerErrorInternet"-->
-<!--        layout="@layout/connection_error_internet"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:visibility="gone"/>-->
-
     <include
-        android:id="@+id/containerErrorServer"
-        layout="@layout/connection_error_server"
+        android:id="@+id/containerErrorInternet"
+        layout="@layout/connection_error_internet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
-
-
-
 
     <FrameLayout
         android:id="@+id/containerBottonNavigationMenu"

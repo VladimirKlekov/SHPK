@@ -24,9 +24,12 @@ class AuthRepositoryImpl(context: Context) : AuthRepository {
             preferences.storeAccessToken(body.toString())
 
         } catch (e: IOException) {
+            e.stackTrace
             throw NetworkException
         } catch (e: Exception) {
+            e.stackTrace
             throw UnknownException
         }
     }
+
 }

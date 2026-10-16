@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.vk.shpk.data.local.AppPreferences
+import ru.vk.shpk.interfaces.CheckConnection
 import ru.vk.shpk.interfaces.MainRepository
 
 class MainRepositoryImpl(context: Context) : MainRepository {

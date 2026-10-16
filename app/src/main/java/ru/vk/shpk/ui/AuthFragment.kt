@@ -9,15 +9,19 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import ru.vk.shpk.R
+import ru.vk.shpk.checkinternet.NetworkConnectionLiveData
 import ru.vk.shpk.databinding.FragmentAuthBinding
 import ru.vk.shpk.dto.User
 import ru.vk.shpk.feedmodel.FeedModelState
+import ru.vk.shpk.interfaces.CheckConnection
 import ru.vk.shpk.viewmodels.AuthViewModel
 
 
-class AuthFragment : Fragment() {
+class AuthFragment : Fragment(), CheckConnection {
     private var _binding: FragmentAuthBinding? = null
     private val binding
         get() = _binding
@@ -35,12 +39,28 @@ class AuthFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAuthBinding.inflate(inflater, container, false)
+        checkConnectionInternet()
+        stateSingInServer()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.logInButton.setOnClickListener {
+            val login = binding.loginTextView.text.toString()
+            val password = binding.passwordTextView.text.toString()
+            val user = User(
+                login = login,
+                password = password
+            )
+            viewModel.singIn(user)
+        }
+
+    }
+
+    private fun stateSingInServer() {
         viewModel.state.observe(viewLifecycleOwner) { state ->
 
             if (state is FeedModelState.Loading) {
@@ -59,18 +79,6 @@ class AuthFragment : Fragment() {
                 Toast.makeText(requireContext(), "Отказано в доступе", Toast.LENGTH_SHORT).show()
             }
         }
-
-        binding.logInButton.setOnClickListener {
-            val login = binding.loginTextView.text.toString()
-            val password = binding.passwordTextView.text.toString()
-            val user = User(
-                login = login,
-                password = password
-            )
-            viewModel.singIn(user)
-        }
-
-
     }
 
     private fun View.hideKeyboard() {
@@ -81,5 +89,19 @@ class AuthFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun checkConnectionInternet() {
+        val connectionLiveData = NetworkConnectionLiveData(requireContext())
+        connectionLiveData.observe(requireContext() as LifecycleOwner, Observer { isConnected ->
+            if (isConnected == true) {
+                binding.containerErrorInternet.errorInternetLayout.visibility = View.GONE
+                binding.authGroup.visibility = View.VISIBLE
+            } else {
+                binding.authGroup.visibility = View.GONE
+                binding.containerErrorInternet.errorInternetLayout.visibility = View.VISIBLE
+
+            }
+        })
     }
 }
