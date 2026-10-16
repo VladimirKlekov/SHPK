@@ -41,6 +41,11 @@ class MainFragment : Fragment(), CheckConnection {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.containerTopMenu.exitAppButton.setOnClickListener {
+            viewModel.exitApp()
+            findNavController().navigate(R.id.action_mainFragment_to_authFragment)
+        }
     }
 
     private fun checkToken() {
@@ -56,14 +61,14 @@ class MainFragment : Fragment(), CheckConnection {
     }
 
     override fun checkConnectionInternet() {
-        val connectionLiveData = NetworkConnectionLiveData(requireContext())
-        connectionLiveData.observe(requireContext() as LifecycleOwner, Observer { isConnected ->
-            if (isConnected == true) {
-                binding.containerErrorInternet.errorInternetLayout.visibility = View.GONE
-            } else {
-                binding.containerErrorInternet.errorInternetLayout.visibility = View.VISIBLE
-            }
-        })
+//        val connectionLiveData = NetworkConnectionLiveData(requireContext())
+//        connectionLiveData.observe(requireContext() as LifecycleOwner, Observer { isConnected ->
+//            if (isConnected == true) {
+//                binding.containerErrorInternet.errorInternetLayout.visibility = View.GONE
+//            } else {
+//                binding.containerErrorInternet.errorInternetLayout.visibility = View.VISIBLE
+//            }
+//        })
     }
 
     override fun checkConnectionServer() {

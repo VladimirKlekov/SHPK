@@ -1,8 +1,13 @@
 package ru.vk.shpk.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import ru.vk.shpk.checkinternet.NetworkConnectionLiveData
 import ru.vk.shpk.databinding.ActivityAppBinding
+import ru.vk.shpk.interfaces.CheckConnection
 
 class AppActivity: AppCompatActivity() {
     private var _binding: ActivityAppBinding? = null
@@ -21,4 +26,6 @@ class AppActivity: AppCompatActivity() {
         super.onDestroy()
         _binding = null
     }
+
+
 }

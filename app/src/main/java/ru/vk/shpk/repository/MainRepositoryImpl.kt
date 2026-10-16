@@ -25,4 +25,8 @@ class MainRepositoryImpl(context: Context) : MainRepository {
         }
 
     }
+
+    override suspend fun exitApp() {
+        preferences.clear()
+    }
 }

@@ -22,4 +22,10 @@ class MainViewModel(
         return repository.checkTokenServer
     }
 
+    fun exitApp(){
+        viewModelScope.launch {
+            repository.exitApp()
+        }
+    }
+
 }

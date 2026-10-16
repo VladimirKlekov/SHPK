@@ -8,4 +8,13 @@
     <string name="exit">Выйти</string>
     <string name="error_internet">Интернет отсутствует. Проверьте подключение</string>
     <string name="connection_error_server">Ошибка подключения к серверу</string>
+    <string name="add_user">Добавить пользователя</string>
+    <string name="add_supplier">Добавить поставщика</string>
+    <string name="list_users">Список пользователей</string>
+    <string name="add_product">Добавить продукт</string>
+    <string name="data_entry">Вввод данных</string>
+    <string name="reports">Отчеты</string>
+    <string name="verification_user">Проверка пользователя</string>
+    <string name="menu">Меню</string>
+    <string name="exit_app">Выйти из приложения</string>
 </resources>
