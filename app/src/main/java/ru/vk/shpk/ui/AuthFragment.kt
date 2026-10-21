@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import ru.vk.shpk.R
 import ru.vk.shpk.checkinternet.NetworkConnectionLiveData
 import ru.vk.shpk.databinding.FragmentAuthBinding
+import ru.vk.shpk.dto.SingInUser
 import ru.vk.shpk.dto.User
 import ru.vk.shpk.feedmodel.FeedModelState
 import ru.vk.shpk.interfaces.CheckConnection
@@ -51,7 +52,7 @@ class AuthFragment : Fragment(), CheckConnection {
         binding.logInButton.setOnClickListener {
             val login = binding.loginTextView.text.toString()
             val password = binding.passwordTextView.text.toString()
-            val user = User(
+            val user = SingInUser(
                 login = login,
                 password = password
             )

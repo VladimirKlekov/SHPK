@@ -4,11 +4,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
-import ru.vk.shpk.dto.Api
-import ru.vk.shpk.dto.Token
-import ru.vk.shpk.dto.User
+import retrofit2.http.Path
+import ru.vk.shpk.dto.UserDetails
+import ru.vk.shpk.dto.SingInUser
 
 
 private const val BASE_URL = "http://192.168.0.59:8080"
@@ -20,16 +19,11 @@ private val retrofit = Retrofit.Builder()
 
 interface ServerApiService {
 
-    @POST("/login")
-    suspend fun singIn(@Body user:User): Response<Token>
+    @POST("/users/login")
+    suspend fun singIn(@Body user: SingInUser): Response<UserDetails>
 
-    @GET("/test")
-    suspend fun testServer(): Response<Boolean>
-
-    @GET("/")
-    suspend fun getHello(): Response<Api>
-
-
+    @POST("users/{token}")
+    suspend fun checkToken(@Path("token") token:String): Response<UserDetails>
 }
 
 object ServerApi {

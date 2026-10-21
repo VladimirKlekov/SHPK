@@ -3,7 +3,7 @@ package ru.vk.shpk.repository
 import android.content.Context
 import ru.vk.shpk.api.ServerApi
 import ru.vk.shpk.data.local.AppPreferences
-import ru.vk.shpk.dto.User
+import ru.vk.shpk.dto.SingInUser
 import ru.vk.shpk.exeption.ApiError
 import ru.vk.shpk.exeption.NetworkException
 import ru.vk.shpk.exeption.UnknownException
@@ -13,7 +13,7 @@ import java.io.IOException
 class AuthRepositoryImpl(context: Context) : AuthRepository {
     private val preferences: AppPreferences = AppPreferences.create(context)
 
-    override suspend fun singIn(user: User) {
+    override suspend fun singIn(user: SingInUser) {
         try {
             val response = ServerApi.service.singIn(user)
             if (!response.isSuccessful) {
@@ -21,7 +21,9 @@ class AuthRepositoryImpl(context: Context) : AuthRepository {
             }
 
             val body = response.body()
-            preferences.storeAccessToken(body.toString())
+            if (body != null) {
+                preferences.storeUserDetails(body)
+            }
 
         } catch (e: IOException) {
             e.stackTrace

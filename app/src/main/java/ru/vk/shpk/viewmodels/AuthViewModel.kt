@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ru.vk.shpk.dto.User
+import ru.vk.shpk.dto.SingInUser
 import ru.vk.shpk.feedmodel.FeedModelState
 import ru.vk.shpk.repository.AuthRepositoryImpl
 
@@ -16,7 +16,7 @@ class AuthViewModel(context: Application) : AndroidViewModel(context) {
     val state: MutableLiveData<FeedModelState>
         get() = _state
 
-    fun singIn(user: User) {
+    fun singIn(user: SingInUser) {
         viewModelScope.launch {
             _state.value = FeedModelState.Loading
             try {
