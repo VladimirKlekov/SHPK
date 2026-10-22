@@ -14,7 +14,12 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
-            repository.checkToken()
+            try {
+                repository.checkToken()
+            }catch (e:Exception){
+                println("Вью модель ошибка ${e.message}")
+            }
+
         }
     }
 

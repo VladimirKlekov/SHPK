@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_authFragment"
             app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_listUsersFragment"
+            app:destination="@id/listUsersFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -21,6 +24,15 @@
         tools:layout="@layout/fragment_auth" >
         <action
             android:id="@+id/action_authFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listUsersFragment"
+        android:name="ru.vk.shpk.ui.ListUsersFragment"
+        android:label="fragment_list_users"
+        tools:layout="@layout/fragment_list_users" >
+        <action
+            android:id="@+id/action_listUsersFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

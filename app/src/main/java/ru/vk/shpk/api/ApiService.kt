@@ -23,7 +23,7 @@ interface ServerApiService {
     suspend fun singIn(@Body user: SingInUser): Response<UserDetails>
 
     @POST("users/{token}")
-    suspend fun checkToken(@Path("token") token:String): Response<UserDetails>
+    suspend fun checkTokenOnServer(@Path("token") token:String): Response<UserDetails>
 }
 
 object ServerApi {

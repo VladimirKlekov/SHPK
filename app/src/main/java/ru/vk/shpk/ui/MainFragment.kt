@@ -46,6 +46,9 @@ class MainFragment : Fragment(), CheckConnection {
             viewModel.exitApp()
             findNavController().navigate(R.id.action_mainFragment_to_authFragment)
         }
+        binding.containerTopMenu.adminMenuButton.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_listUsersFragment)
+        }
     }
 
     private fun checkToken() {
