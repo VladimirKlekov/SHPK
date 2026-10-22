@@ -37,4 +37,8 @@ class MainViewModel(
         }
     }
 
+    fun serverResponse(): LiveData<String> {
+        return repository.serverResponse
+    }
+
 }

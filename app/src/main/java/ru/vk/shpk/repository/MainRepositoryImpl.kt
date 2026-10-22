@@ -8,6 +8,10 @@ import ru.vk.shpk.interfaces.MainRepository
 
 class MainRepositoryImpl(context: Context) : MainRepository {
 
+    private val _serverResponse = MutableLiveData<String>()
+    val serverResponse: LiveData<String>
+        get() = _serverResponse
+
     private val _checkTokenServer = MutableLiveData<Boolean>()
     val checkTokenServer: LiveData<Boolean>
         get() = _checkTokenServer

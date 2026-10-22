@@ -4,9 +4,11 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import ru.vk.shpk.dto.NewUser
 import ru.vk.shpk.dto.UserDetails
 import ru.vk.shpk.dto.SingInUser
 import ru.vk.shpk.dto.UserBd
@@ -20,6 +22,13 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface ServerApiService {
+
+    @DELETE("/users/{id}")
+    suspend fun deleteUserOnServer(@Path("id") id: Int): Response<Unit>
+
+    @POST("/users")
+    suspend fun addUserOnServer(@Body user: NewUser): Response<Unit>
+
     @GET("/users")
     suspend fun getListUsersOnServer(): Response<List<UserBd>>
 

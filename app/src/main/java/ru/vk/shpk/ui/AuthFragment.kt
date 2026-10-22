@@ -16,7 +16,6 @@ import ru.vk.shpk.R
 import ru.vk.shpk.checkinternet.NetworkConnectionLiveData
 import ru.vk.shpk.databinding.FragmentAuthBinding
 import ru.vk.shpk.dto.SingInUser
-import ru.vk.shpk.dto.User
 import ru.vk.shpk.feedmodel.FeedModelState
 import ru.vk.shpk.interfaces.CheckConnection
 import ru.vk.shpk.viewmodels.AuthViewModel
@@ -104,5 +103,11 @@ class AuthFragment : Fragment(), CheckConnection {
 
             }
         })
+    }
+
+    override fun serverResponse() {
+        viewModel.serverResponse().observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), "${it}", Toast.LENGTH_SHORT).show()
+        }
     }
 }

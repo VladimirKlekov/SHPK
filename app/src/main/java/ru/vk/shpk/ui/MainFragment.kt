@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -51,9 +52,7 @@ class MainFragment : Fragment(), CheckConnection {
             viewModel.exitApp()
             findNavController().navigate(R.id.action_mainFragment_to_authFragment)
         }
-//        binding.containerTopMenu.adminMenuButton.setOnClickListener {
-//            findNavController().navigate(R.id.action_mainFragment_to_listUsersFragment)
-//        }
+
     }
 
     private fun adminMenuTopAppBar() {
@@ -69,7 +68,7 @@ class MainFragment : Fragment(), CheckConnection {
         adminMenu.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.addUser -> {
-//                    findNavController().navigate(R.id.action_mainFragment_to_addUserFragment)
+                    findNavController().navigate(R.id.action_mainFragment_to_addUserFragment)
                     true
                 }
                 R.id.listUsers -> {
@@ -118,6 +117,12 @@ class MainFragment : Fragment(), CheckConnection {
                 binding.containerErrorInternet.errorInternetLayout.visibility = View.VISIBLE
             }
         })
+    }
+
+    override fun serverResponse() {
+        viewModel.serverResponse().observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), "${it}", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

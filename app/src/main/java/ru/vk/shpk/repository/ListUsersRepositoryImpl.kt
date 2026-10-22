@@ -12,6 +12,10 @@ import java.io.IOException
 
 class ListUsersRepositoryImpl : ListUsersRepository {
 
+    private val _serverResponse = MutableLiveData<String>()
+    val serverResponse: LiveData<String>
+        get() = _serverResponse
+
     private val _listUsersBd = MutableLiveData<List<UserBd>>()
     val listUsersBd: LiveData<List<UserBd>>
         get() = _listUsersBd
@@ -25,14 +29,34 @@ class ListUsersRepositoryImpl : ListUsersRepository {
             val body = response.body()
             if (body != null) {
                 _listUsersBd.value = body
+                _serverResponse.value = response.message()
             }
 
         } catch (e: IOException) {
-            e.stackTrace
+            _serverResponse.value = e.message
             throw NetworkException
         } catch (e: Exception) {
-            println("СПИИИИИИИИИИИИИИИИИИИИИИИСОК ОШИБКА3")
-            e.stackTrace
+            _serverResponse.value = e.message
+            throw UnknownException
+        }
+    }
+
+    override suspend fun deleteUserOnServer(id: Int) {
+        try {
+            val response = ServerApi.service.deleteUserOnServer(id)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            val body = response.body()
+            if (body != null) {
+                _serverResponse.value = response.message()
+            }
+
+        } catch (e: IOException) {
+            _serverResponse.value = e.message
+            throw NetworkException
+        } catch (e: Exception) {
+            _serverResponse.value = e.message
             throw UnknownException
         }
     }

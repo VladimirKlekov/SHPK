@@ -15,11 +15,38 @@ class ListUsersViewModel(
 
     init {
         viewModelScope.launch {
-            repository.getListUsersOnServer()
+            try {
+                repository.getListUsersOnServer()
+            } catch (e: Exception) {
+                e.stackTrace
+            }
         }
+    }
+
+    fun serverResponse(): LiveData<String> {
+        return repository.serverResponse
     }
 
     fun getListUsersOnServer(): LiveData<List<UserBd>> {
         return repository.listUsersBd
+    }
+
+    fun deleteUserOnServer(id:Int){
+        viewModelScope.launch {
+            try {
+                repository.deleteUserOnServer(id)
+            } catch (e: Exception) {
+                e.stackTrace
+            }
+        }
+    }
+    fun refreshListUsers(){
+        viewModelScope.launch {
+            try {
+                repository.getListUsersOnServer()
+            } catch (e: Exception) {
+                e.stackTrace
+            }
+        }
     }
 }

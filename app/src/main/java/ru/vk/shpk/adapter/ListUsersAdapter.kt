@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.vk.shpk.databinding.ItemUsersListBinding
 import ru.vk.shpk.dto.UserBd
 
-class ListUsersAdapter (private val onItemClick: (String) -> Unit) :
+class ListUsersAdapter (private val onItemClick: (Int) -> Unit) :
     ListAdapter<UserBd, ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,14 +31,20 @@ class ListUsersAdapter (private val onItemClick: (String) -> Unit) :
 
 class ViewHolder(
     private val binding: ItemUsersListBinding,
-    private val onItemClick: (String) -> Unit
+    private val onItemClick: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
+
     fun bind(user: UserBd) {
         binding.apply {
             loginTextView.text = user.login
             passwordTextView.text = user.password
             statusTextView.text = user.status
             userNameTextView.text = user.username
+            binding.deleteButton.setOnClickListener {
+                if (user.id != null) {
+                    onItemClick(user.id)
+                }
+            }
         }
     }
 }

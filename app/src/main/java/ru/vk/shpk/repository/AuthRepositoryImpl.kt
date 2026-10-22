@@ -1,6 +1,8 @@
 package ru.vk.shpk.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import ru.vk.shpk.api.ServerApi
 import ru.vk.shpk.data.local.AppPreferences
 import ru.vk.shpk.dto.SingInUser
@@ -12,6 +14,9 @@ import java.io.IOException
 
 class AuthRepositoryImpl(context: Context) : AuthRepository {
     private val preferences: AppPreferences = AppPreferences.create(context)
+    private val _serverResponse = MutableLiveData<String>()
+    val serverResponse: LiveData<String>
+        get() = _serverResponse
 
     override suspend fun singIn(user: SingInUser) {
         try {
@@ -23,13 +28,14 @@ class AuthRepositoryImpl(context: Context) : AuthRepository {
             val body = response.body()
             if (body != null) {
                 preferences.storeUserDetails(body)
+                _serverResponse.value = response.message()
             }
 
         } catch (e: IOException) {
-            e.stackTrace
+            _serverResponse.value = e.message
             throw NetworkException
         } catch (e: Exception) {
-            e.stackTrace
+            _serverResponse.value = e.message
             throw UnknownException
         }
     }

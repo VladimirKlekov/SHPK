@@ -20,4 +20,8 @@
     <string name="user_status">Статус пользователя</string>
     <string name="user_name">Имя</string>
     <string name="back">Назад</string>
+    <string name="add">Добавить</string>
+    <string name="cancel">Отмена</string>
+    <string name="fill_fields">Заполните все поля</string>
+    <string name="delete">Удалить</string>
 </resources>

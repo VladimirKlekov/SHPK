@@ -2,6 +2,7 @@ package ru.vk.shpk.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
@@ -26,8 +27,10 @@ class AuthViewModel(context: Application) : AndroidViewModel(context) {
                 e.stackTrace
                 _state.value = FeedModelState.Error
             }
-
         }
+    }
 
+    fun serverResponse(): LiveData<String> {
+        return repository.serverResponse
     }
 }
