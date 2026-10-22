@@ -11,6 +11,10 @@ class MainRepositoryImpl(context: Context) : MainRepository {
     private val _checkTokenServer = MutableLiveData<Boolean>()
     val checkTokenServer: LiveData<Boolean>
         get() = _checkTokenServer
+
+    private val _checkStatus = MutableLiveData<String>()
+    val checkStatus: LiveData<String>
+        get() = _checkStatus
     private val preferences: AppPreferences = AppPreferences.create(context)
 
     override suspend fun checkToken() {
@@ -19,6 +23,11 @@ class MainRepositoryImpl(context: Context) : MainRepository {
             _checkTokenServer.value = true
         } else {
             _checkTokenServer.value = false
+        }
+
+        val status = preferences.userDetails.status
+        if(status != null){
+            _checkStatus.value = status
         }
 
     }

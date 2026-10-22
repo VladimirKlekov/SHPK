@@ -17,4 +17,7 @@
     <string name="verification_user">Проверка пользователя</string>
     <string name="menu">Меню</string>
     <string name="exit_app">Выйти из приложения</string>
+    <string name="user_status">Статус пользователя</string>
+    <string name="user_name">Имя</string>
+    <string name="back">Назад</string>
 </resources>

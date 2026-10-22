@@ -16,6 +16,9 @@
     <string name="verification_user">User verification</string>
     <string name="menu">Menu</string>
     <string name="exit_app">Log out of the app</string>
+    <string name="user_status">User status</string>
+    <string name="user_name">User name</string>
+    <string name="back">Back</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

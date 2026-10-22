@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -33,8 +34,11 @@ class MainFragment : Fragment(), CheckConnection {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding.containerTopMenu.adminMenuButton.visibility = View.GONE
         checkConnectionInternet()
         checkToken()
+        checkStatus()
+        adminMenuTopAppBar()
 
         return binding.root
     }
@@ -42,15 +46,57 @@ class MainFragment : Fragment(), CheckConnection {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         binding.containerTopMenu.exitAppButton.setOnClickListener {
             viewModel.exitApp()
             findNavController().navigate(R.id.action_mainFragment_to_authFragment)
         }
-        binding.containerTopMenu.adminMenuButton.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_listUsersFragment)
-        }
+//        binding.containerTopMenu.adminMenuButton.setOnClickListener {
+//            findNavController().navigate(R.id.action_mainFragment_to_listUsersFragment)
+//        }
     }
 
+    private fun adminMenuTopAppBar() {
+        val adminMenu = PopupMenu(
+            context,
+            binding.containerTopMenu.adminMenuButton
+        )
+        adminMenu.inflate(R.menu.admin_menu)
+        binding.containerTopMenu.adminMenuButton.setOnClickListener {
+            adminMenu.show()
+        }
+
+        adminMenu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.addUser -> {
+//                    findNavController().navigate(R.id.action_mainFragment_to_addUserFragment)
+                    true
+                }
+                R.id.listUsers -> {
+                    findNavController().navigate(R.id.action_mainFragment_to_listUsersFragment)
+                    true
+                }
+                R.id.addSupplier->{
+//                    findNavController().navigate(R.id.action_mainFragment_to_addSupplierFragment)
+                    true
+                }
+
+                R.id.addProduct->{
+//                    findNavController().navigate(R.id.action_mainFragment_to_addProductFragment)
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+    private fun checkStatus(){
+        viewModel.checkStatus().observe(viewLifecycleOwner) {
+            when(it){
+                "admin"->{binding.containerTopMenu.adminMenuButton.visibility = View.VISIBLE}
+            }
+        }
+    }
     private fun checkToken() {
         viewModel.checkToken().observe(viewLifecycleOwner) {
             if (it == false)

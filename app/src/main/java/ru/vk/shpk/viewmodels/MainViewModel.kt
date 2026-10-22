@@ -27,6 +27,10 @@ class MainViewModel(
         return repository.checkTokenServer
     }
 
+    fun checkStatus(): LiveData<String> {
+        return repository.checkStatus
+    }
+
     fun exitApp(){
         viewModelScope.launch {
             repository.exitApp()
