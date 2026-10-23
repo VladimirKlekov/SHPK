@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:padding="4dp"
             android:textSize="16sp"
             android:textColor="@color/gold_one"
@@ -40,13 +40,13 @@
             android:layout_height="wrap_content"
             android:gravity="start"
             android:padding="4dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:text=""
             android:textSize="16sp"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleLoginTextView"
-            tools:text="Логин"/>
+            tools:text="Login"/>
 
         <View
             android:id="@+id/divider"
@@ -64,7 +64,7 @@
             android:textSize="16sp"
             android:gravity="start"
             android:padding="4dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:text="@string/password"
             android:textColor="@color/gold_one"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
             android:textSize="16sp"
             android:gravity="start"
             android:padding="4dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:textColor="@color/white"
             tools:text="password"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
             android:textSize="16sp"
             android:gravity="start"
             android:padding="4dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:text="@string/user_status"
             android:textColor="@color/gold_one"
             app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +114,7 @@
             android:textSize="16sp"
             android:gravity="start"
             android:padding="4dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:textColor="@color/white"
             tools:text="status"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +136,7 @@
             android:textSize="16sp"
             android:gravity="start"
             android:padding="4dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:text="@string/user_name"
             android:textColor="@color/gold_one"
             app:layout_constraintStart_toStartOf="parent"
@@ -150,9 +150,9 @@
             android:textSize="16sp"
             android:gravity="start"
             android:padding="4dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:textColor="@color/white"
-            tools:text="Какое-то имя"
+            tools:text="Name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleUserNameTextView"/>
 
@@ -167,10 +167,10 @@
 
         <Button
             android:id="@+id/deleteButton"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/frame_for_button"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/frame_for_rv"
             android:gravity="center"
             android:textColor="@color/white"
             app:backgroundTintMode="add"
@@ -178,7 +178,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider4"
             android:text="@string/delete" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

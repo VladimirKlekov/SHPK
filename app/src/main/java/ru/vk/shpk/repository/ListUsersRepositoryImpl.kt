@@ -1,6 +1,5 @@
 package ru.vk.shpk.repository
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.vk.shpk.api.ServerApi
 import ru.vk.shpk.dto.UserBd
@@ -12,13 +11,7 @@ import java.io.IOException
 
 class ListUsersRepositoryImpl : ListUsersRepository {
 
-    private val _serverResponse = MutableLiveData<String>()
-    val serverResponse: LiveData<String>
-        get() = _serverResponse
-
-    private val _listUsersBd = MutableLiveData<List<UserBd>>()
-    val listUsersBd: LiveData<List<UserBd>>
-        get() = _listUsersBd
+    val listUsersBd = MutableLiveData<List<UserBd>>()
 
     override suspend fun getListUsersOnServer() {
         try {
@@ -28,15 +21,14 @@ class ListUsersRepositoryImpl : ListUsersRepository {
             }
             val body = response.body()
             if (body != null) {
-                _listUsersBd.value = body
-                _serverResponse.value = response.message()
+                listUsersBd.value = body
             }
 
         } catch (e: IOException) {
-            _serverResponse.value = e.message
+            e.stackTrace
             throw NetworkException
         } catch (e: Exception) {
-            _serverResponse.value = e.message
+            e.stackTrace
             throw UnknownException
         }
     }
@@ -47,16 +39,12 @@ class ListUsersRepositoryImpl : ListUsersRepository {
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
-            val body = response.body()
-            if (body != null) {
-                _serverResponse.value = response.message()
-            }
 
         } catch (e: IOException) {
-            _serverResponse.value = e.message
+            e.stackTrace
             throw NetworkException
         } catch (e: Exception) {
-            _serverResponse.value = e.message
+            e.stackTrace
             throw UnknownException
         }
     }

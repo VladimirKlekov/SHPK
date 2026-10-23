@@ -28,7 +28,6 @@ class AddUserViewModel(context: Application) : AndroidViewModel(context) {
                 repository.addUserOnServer(user)
                 _state.value = FeedModelState.Idle
             } catch (e: Exception) {
-                println("Вью мооооооооооооодель $e")
                 e.stackTrace
                 _state.value = FeedModelState.Error
             }

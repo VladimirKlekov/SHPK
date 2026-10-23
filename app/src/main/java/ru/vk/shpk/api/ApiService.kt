@@ -24,7 +24,7 @@ private val retrofit = Retrofit.Builder()
 interface ServerApiService {
 
     @DELETE("/users/{id}")
-    suspend fun deleteUserOnServer(@Path("id") id: Int): Response<Unit>
+    suspend fun deleteUserOnServer(@Path("id") id: Int): Response<String>
 
     @POST("/users")
     suspend fun addUserOnServer(@Body user: NewUser): Response<Unit>

@@ -119,10 +119,4 @@ class AddUserFragment : Fragment(), CheckConnection {
             }
         })
     }
-
-    override fun serverResponse() {
-        viewModel.serverResponse().observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), "${it}", Toast.LENGTH_SHORT).show()
-        }
-    }
 }

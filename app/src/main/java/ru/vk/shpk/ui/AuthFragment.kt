@@ -28,10 +28,8 @@ class AuthFragment : Fragment(), CheckConnection {
             ?: throw IllegalStateException("Binding for FragmentLoginBinding must not be null")
     private val viewModel: AuthViewModel by viewModels()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -103,11 +101,5 @@ class AuthFragment : Fragment(), CheckConnection {
 
             }
         })
-    }
-
-    override fun serverResponse() {
-        viewModel.serverResponse().observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), "${it}", Toast.LENGTH_SHORT).show()
-        }
     }
 }

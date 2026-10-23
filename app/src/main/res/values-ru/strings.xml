@@ -24,4 +24,7 @@
     <string name="cancel">Отмена</string>
     <string name="fill_fields">Заполните все поля</string>
     <string name="delete">Удалить</string>
+    <string name="user_delete">Пользователь удален</string>
+    <string name="user_no_delete">Пользователь не может быть удален</string>
+    <string name="list_no_load">Список пользователей не может быть загружен</string>
 </resources>
